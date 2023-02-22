@@ -13,12 +13,12 @@ const counterReducer = (state = initialState, action) =>{
     if (action.type === 'increment'){
         return{
             ...state,
-            value: state.value + 1,
+            value: state.value + action.payload,
         }
     } else if (action.type === 'decrement'){
         return{
             ...state,
-            value: state.value - 1
+            value: state.value - action.payload
         }
     } else return state;
 }
@@ -38,12 +38,14 @@ store.subscribe(renderUI);
 renderUI();
 incrementButton.addEventListener('click', ()=>{
     store.dispatch({
-        type: 'increment'
+        type: 'increment',
+        payload: 5
     })
 })
 
 decrementButton.addEventListener('click', ()=>{
     store.dispatch({
-        type: 'decrement'
+        type: 'decrement',
+        payload:7
     })
 })
