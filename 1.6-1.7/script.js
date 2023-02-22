@@ -1,7 +1,26 @@
 // catach all DOM element
 const displayText = document.getElementById('displaytext');
 const incrementButton = document.getElementById('incrementbtn');
-const decrementButton = document.getElementById('decrementbtn')
+const decrementButton = document.getElementById('decrementbtn');
+
+// Action Identifier
+const INCREMENT = 'increment';
+const DECREMENT = 'decrement';
+
+// Action Creator 
+const increment = (value) =>{
+    return{
+        type: 'increment',
+        payload: value 
+    }
+}
+
+const decrement = (value) =>{
+    return{
+        type: 'decrement',
+        payload: value 
+    }
+}
 
 // initial State declear 
 const initialState = {
@@ -22,7 +41,6 @@ const counterReducer = (state = initialState, action) =>{
         }
     } else return state;
 }
-
 // create  Redux Store 
 const store = Redux.createStore(counterReducer);
 
@@ -37,15 +55,9 @@ store.subscribe(renderUI);
 // update UI initially
 renderUI();
 incrementButton.addEventListener('click', ()=>{
-    store.dispatch({
-        type: 'increment',
-        payload: 5
-    })
+    store.dispatch(increment(5))
 })
 
 decrementButton.addEventListener('click', ()=>{
-    store.dispatch({
-        type: 'decrement',
-        payload:7
-    })
+    store.dispatch(decrement(1))
 })
